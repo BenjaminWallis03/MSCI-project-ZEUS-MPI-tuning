@@ -1,0 +1,46 @@
+! --- Multijet only Professor scan card: ZEUS_2007_I756660
+
+Init:showChangedSettings = on
+Init:showAllSettings = on
+
+Beams:frameType = 2
+Beams:idA = 2212
+Beams:eA = 920.0
+Beams:idB = 11
+Beams:eB = 27.5
+
+Random:setSeed = on
+Random:seed = 1
+
+PDF:lepton = on
+PDF:beamB2gamma = on
+PDF:beamA2gamma = off
+
+Photon:ProcessType = 0
+PhotonParton:all = on
+Photon:Q2max = 1.0
+PDF:GammaSet = 1
+
+HardQCD:all = on
+PhaseSpace:pTHatMin = 4.0
+
+PartonLevel:MPI = on
+
+# ---- Tuned parameters (Professor will substitute these) ----
+MultipartonInteractions:pT0Ref = 2.65
+MultipartonInteractions:ecmPow = 0.173
+MultipartonInteractions:expPow = 1.807
+
+# ---- Fixed parameters ----
+BeamRemnants:primordialKThard = 2.0
+StringPT:sigma = 0.325
+SpaceShower:alphaSvalue = 0.1365
+TimeShower:alphaSvalue = 0.1365
+SpaceShower:pTmaxMatch = 1
+
+Main:timesAllowErrors = 200000
+Main:numberOfEvents = 1000000
+
+Main:runRivet = on
+Main:analyses = ZEUS_2007_I756660
+Main:outputLog = on

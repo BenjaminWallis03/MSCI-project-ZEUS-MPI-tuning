@@ -1,0 +1,67 @@
+! ------------------------------------------------------------
+! run.cmnd template for ZEUS_2001_I568665
+! Dijet PHOTOPRODUCTION at HERA (ep)
+! ------------------------------------------------------------
+
+! --------------------------
+! Beams (HERA)
+! --------------------------
+Beams:frameType = 2
+Beams:idA = 2212      ! proton
+Beams:eA  = 820.0
+Beams:idB = -11        ! positron
+Beams:eB  = 27.5
+
+! --------------------------
+! Photoproduction setup
+! (electron emits quasi-real photon -> gamma p)
+! --------------------------
+PDF:lepton = on
+PDF:beamB2gamma = on          ! photon from electron beam (beam B)
+PDF:beamA2gamma = off
+
+Photon:ProcessType = 0        ! allow all photon processes (direct/resolved mixtures)
+PhotonParton:all  = on        ! dijet matrix elements with photons
+
+Photon:Q2max = 1.0            ! quasi-real photons (photoproduction region)
+
+PDF:GammaSet = 1              ! photon PDFs for resolved photon component (keep default unless you know what you want)
+
+HardQCD:all = on              ! QCD 2->2 (jets)
+
+! --------------------------
+! Phase space / hardness
+! (analysis uses jets with ET2 > 15 GeV, ET1 > 20 GeV)
+! Use pTHatMin ~15 to populate region efficiently
+! --------------------------
+PhaseSpace:pTHatMin = 10.0
+
+! --------------------------
+! MPI / underlying event (optional)
+! Start with ON if you want more realistic hadronic activity
+! --------------------------
+PartonLevel:MPI = on
+
+! (Optional tune-ish numbers — safe to omit if unsure)
+!MultipartonInteractions:pT0parametrization = 0
+!MultipartonInteractions:ecmRef = 7000.0
+!MultipartonInteractions:pT0Ref = 2.28
+!MultipartonInteractions:ecmPow = 0.215
+
+! --------------------------
+! Run control (your wrapper reads these)
+! --------------------------
+Main:timesAllowErrors = 200000
+Main:numberOfEvents   = 200000
+
+! Rivet control (your wrapper reads these)
+Main:runRivet   = on
+Main:analyses   = ZEUS_2001_I568665
+Main:outputLog  = on
+
+! --------------------------
+! IMPORTANT: turn OFF DIS process lines if you had them
+! e.g. do NOT include:
+! WeakBosonExchange:ff2ff(t:gmZ) = on
+! ------------------------------------------------------------
+
